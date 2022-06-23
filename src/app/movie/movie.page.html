@@ -1,0 +1,55 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title *ngIf="movie">{{ movie.original_title }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div *ngIf="movie" class="movie-single">
+    <div class="ion-text-center background-movie"
+         [ngStyle]="{
+           'background-image': 'url(https://image.tmdb.org/t/p/w400' + movie.backdrop_path + ')'
+         }"
+      >
+      <img [src]="'https://image.tmdb.org/t/p/w200' + movie.poster_path" width="125" />
+    </div>
+
+    <h1 class="ion-text-center ion-padding">{{ movie.original_title }}</h1>
+
+    <div class="ion-text-center">
+      <ion-badge color="primary" *ngFor="let genre of movie.genres" class="ion-margin-end">{{ genre.name }}</ion-badge>
+    </div>
+
+    <ion-grid class="ion-justify-content-center ion-padding">
+      <ion-row>
+        <ion-col>
+          <p class="ion-no-margin">{{ movie.release_date | date:'y' }}</p>
+        </ion-col>
+        <ion-col>
+          <p class="ion-no-margin">
+            <ion-icon name="star"></ion-icon> <strong>{{ movie.vote_average }}</strong>/10
+          </p>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <p class="ion-padding ion-no-margin">{{ movie.overview }}</p>
+
+    <ion-grid>
+      <ion-row *ngIf="movie.credits.cast">
+        <ion-col size="6" *ngFor="let cast of movie.credits.cast">
+          <ion-card class="ion-no-margin" routerLink="/actor" [state]="cast">
+            <img [src]="'https://image.tmdb.org/t/p/w200' + cast.profile_path" *ngIf="cast.profile_path" />
+            <ion-card-content>
+              <h3>{{ cast.name }}</h3>
+              <p class="ion-no-margin">{{ cast.character }}</p>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+</ion-content>

@@ -16,7 +16,7 @@
   <ion-grid>
     <ion-row>
       <ion-col size="6" *ngFor="let movie of movies">
-        <ion-card class="ion-no-margin">
+        <ion-card routerLink="/movie" [state]="movie" class="ion-no-margin">
           <img [src]="'https://image.tmdb.org/t/p/w200' + movie.poster_path" />
           <ion-card-content class="ion-padding">
             <h3 [title]="movie.title">

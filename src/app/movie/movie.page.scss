@@ -1,0 +1,29 @@
+.background-movie {
+  min-height: 250px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+
+  img {
+    margin-top: 30px;
+    border: 1px solid #fff;
+    border-radius: 5px;
+  }
+}
+
+.movie-single {
+  h3 {
+    font-size: 18px;
+    color: #000;
+    font-weight: 700;
+    min-height: 42px;
+  }
+
+  strong {
+    color: #000;
+  }
+
+  ion-icon[name="star"] {
+    color: #fbcd00;
+  }
+}

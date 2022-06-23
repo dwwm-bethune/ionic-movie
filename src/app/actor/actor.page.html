@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title *ngIf="actor">{{ actor.name }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div *ngIf="actor">
+    <ion-grid class="ion-justify-content-center ion-padding">
+      <ion-row>
+        <ion-col>
+          <ion-card><img [src]="'https://image.tmdb.org/t/p/w200' + actor.profile_path" width="125" /></ion-card>
+        </ion-col>
+        <ion-col>
+          <h1>{{ actor.name }}</h1>
+          <ion-card-subtitle class="ion-no-margin">{{ actor.birthday }}</ion-card-subtitle>
+          <p class="ion-no-margin">{{ actor.place_of_birth }}</p>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <ion-grid class="ion-justify-content-center ion-no-padding">
+      <ion-row>
+        <ion-list>
+          <ion-item *ngFor="let movie of movies">
+            <ion-avatar slot="start" *ngIf="movie.poster_path">
+              <img [src]="'https://image.tmdb.org/t/p/w200' + movie.poster_path" />
+            </ion-avatar>
+            <ion-label>
+              <h2>{{ movie.original_title }}</h2>
+              <p>{{ movie.release_date | date:'y' }}</p>
+            </ion-label>
+          </ion-item>
+        </ion-list>
+      </ion-row>
+    </ion-grid>
+  </div>
+</ion-content>

@@ -15,19 +15,22 @@
 
   <ion-grid>
     <ion-row>
-      <ion-col size="6">
+      <ion-col size="6" *ngFor="let movie of movies">
         <ion-card class="ion-no-margin">
-          <img [src]="'https://image.tmdb.org/t/p/w200' + '/pB8BM7pdSp6B6Ih7QZ4DrQ3PmJK.jpg'" />
+          <img [src]="'https://image.tmdb.org/t/p/w200' + movie.poster_path" />
           <ion-card-content class="ion-padding">
-            <h3>Fight Club</h3>
+            <h3 [title]="movie.title">
+              {{ movie.title | slice:0:10 }}
+              <span *ngIf="movie.title.length > 10">...</span>
+            </h3>
             <ion-grid class="ion-no-padding ion-justify-content-center">
               <ion-row class="ion-no-padding">
                 <ion-col class="ion-no-padding">
-                  <p>2022</p>
+                  <p>{{ movie.release_date | date:'y' }}</p>
                 </ion-col>
                 <ion-col class="ion-no-padding">
                   <p>
-                    <ion-icon name="star"></ion-icon> <strong>6.7</strong>/10
+                    <ion-icon name="star"></ion-icon> <strong>{{ movie.vote_average }}</strong>/10
                   </p>
                 </ion-col>
               </ion-row>
